@@ -68,7 +68,7 @@ setup: setup-python setup-cdk
 setup-python:
 	@echo "Installing python virtual environment..."
 	python3 -m venv venv
-	. venv/bin/activate && python -m pip install --upgrade pip -r requirements.txt --verbose
+	. venv/bin/activate && python -m pip install --upgrade pip -r requirements.txt
 	cp -n fixtures/settings/settings.yaml ./settings.yaml || true
 
 setup-cdk:
@@ -167,7 +167,7 @@ coverage: venv/bin/activate
 bandit: venv/bin/activate
 	venv/bin/python -m bandit -r ${CODE_PATH}
 
-stats:
+stats:  venv/bin/activate
 	pygount --format=summary ${CODE_PATH} features fixtures media tests workbooks *.ini cdk.json package.json *.md *.py *.txt Makefile
 
 rebase:
