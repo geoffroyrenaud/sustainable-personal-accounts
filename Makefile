@@ -68,7 +68,7 @@ setup: setup-python setup-cdk
 setup-python:
 	@echo "Installing python virtual environment..."
 	python3 -m venv venv
-	. venv/bin/activate && python -m pip install --upgrade pip -r requirements.txt
+	. venv/bin/activate && python -m pip install --upgrade pip -r requirements.txt --verbose
 	cp -n fixtures/settings/settings.yaml ./settings.yaml || true
 
 setup-cdk:
