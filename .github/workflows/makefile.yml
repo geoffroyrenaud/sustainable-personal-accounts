@@ -1,0 +1,33 @@
+# .github/workflows/makefile.yml
+
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main", "feat/*" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Pre requisite environment configuration for pipeline
+      run: |
+        export PATH=$PATH:$(npm get prefix)/bin
+        export PATH=$PATH:~/node_modules/aws-cdk/bin
+        echo "PATH:" $PATH
+      
+    
+    - name: Installing python virtual environment
+      run: make setup
+
+    - name: Run check
+      run: make all-tests
+
+    - name: Run stats
+      run: make stats
